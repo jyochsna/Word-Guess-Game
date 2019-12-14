@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Word Guess Game</title>
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+</head>
+
+<body>
+    <!--Main Heading-->
+    <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+              <h1 class="display-4">Guess the Word!!</h1>
+             </div>
+          </div>
+    <!-- <div class="heading">
+        <h1>Let's Start</h1>
+    </div> -->
+    <div class="background">
+        <div class="maincontainer">
+            <!--changing image based on correct answer-->
+            <h2>Press Any Key To Guess This word!</h2>
+            <div>
+                <img id="image" src="assets/images/food.jpg" width="40%" height="200">
+            </div>
+            <!--Current Word -->
+            <div>
+                <h3 id="currentword">_ _ _ _</h3>
+            </div>
+            <div id="scoreboard">
+                <!--Guesses left-->
+                <div class="bar">
+                    <h3>Guesses remaining:
+                        <span id="guessremaining"></span>
+                    </h3>
+                </div>
+                <!--Wins Counter-->
+                <div class="bar">
+                    <h3>Wins:
+                        <span id="winstracker"></span>
+                    </h3>
+                </div>
+                <!--LossCounter-->
+                <div class="bar">
+                    <h3>Looses:
+                        <span id="losstracker"></span>
+                    </h3>
+                </div>
+                <!--Guessed letter-->
+                <div class="bar">
+                    <h3> Letter you guessed:
+                        <span id="guessletter"></span>
+                    </h3>
+                </div>
+
+            </div>
+        </div>
+        <script src="assets/javascript/game.js"></script>
+</body>
+
+</html>
