@@ -16,7 +16,7 @@ var loose = 0;
 var guessRemaining = words.length;
 
 window.onload = function() {
-    //alert("load ready");
+    
     this.renderDashLines();
     this.renderGuessRemaining();
 }
