@@ -5,7 +5,7 @@ var dashLines = [];
 
 var correctlyGuessedLetters = [];
 var incorrectlyGuessedLetters = [];
-var numberOfAttempts = 0;
+// var numberOfAttempts = 0;
 
 // variable to keep track of wins
 var win = 0;
@@ -13,7 +13,7 @@ var win = 0;
 // variable to keep track of looses
 var loose = 0;
 
-var guessRemaining = words.length;
+var guessRemaining = words[currentWordIndex].length + 2;
 
 window.onload = function() {
     
@@ -24,8 +24,23 @@ window.onload = function() {
 // function to read the key
 document.onkeyup = function(event) {
     var userInput = event.key.toLowerCase();
+
+    checkUserInput(userInput);
+
     renderCorrectlyGuessedWord(userInput);
     renderIncorrectlyGussedWord(userInput);
+    renderGuessRemaining();
+}
+
+function checkUserInput(userInput) {
+    // check if the letter is present in the current word
+    var currentWord = words[currentWordIndex];
+    for (let i = 0; i < currentWord.length; i++) {
+        if (currentWord[i] != userInput) {
+            guessRemaining--;
+            break;
+        }
+    }
 }
 
 function renderGuessRemaining() {
@@ -53,16 +68,20 @@ function renderCorrectlyGuessedWord(input) {
     document.getElementById("currentword").innerHTML = dashLines;
 
     checkAnswer(dashLines);
+    renderGuessRemaining();
 }
 
 function renderIncorrectlyGussedWord(input) {
     incorrectlyGuessedLetters.push(input);
+    //guessRemaining--;
+    //document.getElementById("guessremaining").innerHTML = guessRemaining;
     document.getElementById("guessletter").innerHTML = incorrectlyGuessedLetters; 
 }
 
 function checkAnswer(answer) {
     var match = true;
     var currentWord = words[currentWordIndex];
+
     for (let i = 0; i < currentWord.length; i++) {
         if(answer[i] != currentWord.charAt(i)) {
             match = false;
@@ -71,13 +90,16 @@ function checkAnswer(answer) {
 
     if (match) {
         currentWordIndex++;
-        guessRemaining--;
+        // guessRemaining--;
 
         if (currentWordIndex >= words.length) {
             currentWordIndex = 0;
-            guessRemaining = words.length;
+            // guessRemaining = words.length;
             incorrectlyGuessedLetters = [];
         }
+
+        guessRemaining = words[currentWordIndex].length + 2;
+
         renderDashLines();
         renderGuessRemaining();
     }
