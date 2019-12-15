@@ -21,10 +21,14 @@ h1{
   /*for main container*/
   .maincontainer{
       text-align: center;
-     
+   padding: 10px;
      margin: 5px 20px ;
   }
   h3{
-      font-family: cursive;
+      font-family:'Indie Flower', cursive;
       font-size:20px;
+      padding: 20px;
+      font-weight: bolder;
+
+
      }

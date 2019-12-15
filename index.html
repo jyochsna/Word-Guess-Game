@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Word Guess Game</title>
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/reset.css">
     <link rel="stylesheet" href="assets/css/style.css">
 
@@ -26,7 +27,7 @@
             <!--changing image based on correct answer-->
             <h2>Press Any Key To Guess This word!</h2>
             <div>
-                <img id="image" src="assets/images/food.jpg" width="40%" height="200">
+                <img id="image" src="assets/images/bat.jpg" width="40%" height="200">
             </div>
             <!--Current Word -->
             <div>
@@ -59,6 +60,30 @@
                 </div>
 
             </div>
+        </div>
+
+        <!--for Audio files-->
+        <div>
+            <!--bat-->
+            <audio id = "bat">
+                <source src = "./assets/audio/bat1.mp3" type="audio/mp3">
+            </audio>
+            <!--coyote-->
+            <audio id = "coyote">
+                <source src = "./assets/audio/coyote01.mp3" type="audio/mp3">
+            </audio>
+            <!--fox-->
+            <audio id = "fox">
+                <source src = "./assets/audio/greyfox-vs-coon.mp3" type="audio/mp3">
+            </audio>
+            <!--guinepig-->
+            <audio id = "guinepig">
+                <source src = "./assets/audio/guinea_pig1.mp3" type="audio/mp3">
+            </audio>
+            <!--tiger-->
+            <audio id = "tiger">
+                <source src = "./assets/audio/tiger7.mp3" type="audio/mp3">
+            </audio>
         </div>
         <script src="assets/javascript/game.js"></script>
 </body>

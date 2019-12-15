@@ -124,3 +124,10 @@ function checkAnswer(answer) {
         renderWin();
     }
 }
+var b = document.getElementById("bat");
+var c = document.getElementById("coyote");
+var f = document.getElementById("fox");
+var g = document.getElementById("guinepig");
+var t = document.getElementById("tiger");
+
+
