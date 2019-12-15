@@ -153,6 +153,7 @@ function playAudio() {
             {
                 tigersound.pause();
                 batsound.play();
+                
             }
             break;
 
@@ -160,6 +161,7 @@ function playAudio() {
             {
                 batsound.pause();
                 coyotesound.play();
+                
             }
             break;
         case 2:
