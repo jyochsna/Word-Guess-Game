@@ -5,7 +5,6 @@ var dashLines = [];
 
 var correctlyGuessedLetters = [];
 var incorrectlyGuessedLetters = [];
-// var numberOfAttempts = 0;
 
 // variable to keep track of wins
 var win = 0;
@@ -19,6 +18,8 @@ window.onload = function() {
     
     this.renderDashLines();
     this.renderGuessRemaining();
+    this.renderLooses();
+    this.renderWin();
 }
 
 // function to read the key
@@ -30,6 +31,7 @@ document.onkeyup = function(event) {
     renderCorrectlyGuessedWord(userInput);
     renderIncorrectlyGussedWord(userInput);
     renderGuessRemaining();
+    renderLooses();
 }
 
 function checkUserInput(userInput) {
@@ -41,6 +43,23 @@ function checkUserInput(userInput) {
             break;
         }
     }
+
+    if (guessRemaining == 0) {
+        loose++;
+        currentWordIndex++;
+        renderDashLines();
+        if (currentWordIndex < words.length) {
+            guessRemaining = words[currentWordIndex].length + 2;
+        }
+    }
+}
+
+function renderWin() {
+    document.getElementById("winstracker").innerHTML = win;
+}
+
+function renderLooses() {
+    document.getElementById("losstracker").innerHTML = loose;
 }
 
 function renderGuessRemaining() {
@@ -73,8 +92,6 @@ function renderCorrectlyGuessedWord(input) {
 
 function renderIncorrectlyGussedWord(input) {
     incorrectlyGuessedLetters.push(input);
-    //guessRemaining--;
-    //document.getElementById("guessremaining").innerHTML = guessRemaining;
     document.getElementById("guessletter").innerHTML = incorrectlyGuessedLetters; 
 }
 
@@ -90,17 +107,20 @@ function checkAnswer(answer) {
 
     if (match) {
         currentWordIndex++;
-        // guessRemaining--;
+        win++;
 
         if (currentWordIndex >= words.length) {
+            alert("Game over!!! " + "Total Wins = " + win + " Total Looses = " + loose + " Press OK to start over ...");
             currentWordIndex = 0;
-            // guessRemaining = words.length;
             incorrectlyGuessedLetters = [];
+            win = 0;
+            loose = 0;
         }
 
         guessRemaining = words[currentWordIndex].length + 2;
 
         renderDashLines();
         renderGuessRemaining();
+        renderWin();
     }
 }
