@@ -1,5 +1,5 @@
 // array to store words to be guessed
-var words = ["bat" , "coyote" , "fox" , "guinepig", "tiger"]
+var words = ["bat", "coyote", "fox", "guinepig", "tiger"]
 var currentWordIndex = 0;
 var dashLines = [];
 
@@ -14,16 +14,18 @@ var loose = 0;
 
 var guessRemaining = words[currentWordIndex].length + 2;
 
-window.onload = function() {
-    
+window.onload = function () {
+
     this.renderDashLines();
     this.renderGuessRemaining();
     this.renderLooses();
     this.renderWin();
+
+    //this.b.play();
 }
 
 // function to read the key
-document.onkeyup = function(event) {
+document.onkeyup = function (event) {
     var userInput = event.key.toLowerCase();
 
     checkUserInput(userInput);
@@ -32,10 +34,16 @@ document.onkeyup = function(event) {
     renderIncorrectlyGussedWord(userInput);
     renderGuessRemaining();
     renderLooses();
+    playAudio();
+    //b.play();
+
 }
 
 function checkUserInput(userInput) {
     // check if the letter is present in the current word
+    if (currentWordIndex >= words.length) {
+        return;
+    }
     var currentWord = words[currentWordIndex];
     for (let i = 0; i < currentWord.length; i++) {
         if (currentWord[i] != userInput) {
@@ -68,7 +76,11 @@ function renderGuessRemaining() {
 
 function renderDashLines() {
     dashLines = [];
-    
+
+    if (currentWordIndex >= words.length) {
+        return;
+    }
+
     var length = words[currentWordIndex].length;
     for (let i = 0; i < length; i++) {
         dashLines.push('_');
@@ -77,7 +89,11 @@ function renderDashLines() {
 }
 
 function renderCorrectlyGuessedWord(input) {
-    var currentWord = words[currentWordIndex]; // bat
+    if (currentWordIndex >= words.length) {
+        return;
+    }
+    var currentWord = words[currentWordIndex];
+
     for (let i = 0; i < currentWord.length; i++) {
         if (currentWord.charAt(i) == input) {
             dashLines[i] = currentWord.charAt(i);
@@ -92,7 +108,7 @@ function renderCorrectlyGuessedWord(input) {
 
 function renderIncorrectlyGussedWord(input) {
     incorrectlyGuessedLetters.push(input);
-    document.getElementById("guessletter").innerHTML = incorrectlyGuessedLetters; 
+    document.getElementById("guessletter").innerHTML = incorrectlyGuessedLetters;
 }
 
 function checkAnswer(answer) {
@@ -100,7 +116,7 @@ function checkAnswer(answer) {
     var currentWord = words[currentWordIndex];
 
     for (let i = 0; i < currentWord.length; i++) {
-        if(answer[i] != currentWord.charAt(i)) {
+        if (answer[i] != currentWord.charAt(i)) {
             match = false;
         }
     }
@@ -124,10 +140,46 @@ function checkAnswer(answer) {
         renderWin();
     }
 }
-var b = document.getElementById("bat");
-var c = document.getElementById("coyote");
-var f = document.getElementById("fox");
-var g = document.getElementById("guinepig");
-var t = document.getElementById("tiger");
+/*variable for audio sound*/
+var batsound = document.getElementById("bat");
+var coyotesound = document.getElementById("coyote");
+var foxsound = document.getElementById("fox");
+var guinepigsound = document.getElementById("guinepig");
+var tigersound = document.getElementById("tiger");
 
+function playAudio() {
+    switch (currentWordIndex) {
+        case 0:
+            {
+                tigersound.pause();
+                batsound.play();
+            }
+            break;
 
+        case 1:
+            {
+                batsound.pause();
+                coyotesound.play();
+            }
+            break;
+        case 2:
+            {
+                coyotesound.pause();
+                foxsound.play();
+
+            }
+            break;
+        case 3:
+            {
+                foxsound.pause();
+                guinepigsound.play();
+            }
+            break;
+        case 4:
+            {
+                guinepigsound.pause();
+                tigersound.play();
+            }
+            break;
+    }
+}
